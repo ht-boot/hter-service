@@ -7,6 +7,7 @@ const { expressjwt } = require("express-jwt");
 
 var indexRouter = require("./routes/index");
 var authRouter = require("./routes/auth");
+var routes = require("./routes/route");
 const secretKey = "token";
 
 var app = express();
@@ -24,13 +25,13 @@ app.use((err, req, res, next) => {
     return res.send({
       status: 401,
       data: null,
-      message: "无效的token",
+      message: "无效的token。",
     });
   }
   res.send({
     status: 500,
     data: null,
-    message: "未知的错误",
+    message: "未知的错误。",
   });
 });
 
@@ -46,6 +47,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use(authRouter);
+app.use("/", routes);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {

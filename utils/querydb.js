@@ -18,7 +18,7 @@ const loginFun = (req, res) => {
       return;
     }
 
-    // 判断用户是否存在,账号密码是否正确
+    //判断用户是否存在, 账号密码是否正确;
     const loginInfo = data.find((item) => {
       return item.username === username && item.password === decrypt(password);
     });
